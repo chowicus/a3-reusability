@@ -31,7 +31,7 @@ $(function() {
         prepData();
 
         // Define function to draw a LineGraph
-        var linegraph = LineGraph().width(1000).height(300).xTitle('x test').yTitle('y test').title('test title');
+        var linegraph = LineGraph().width(500).height(300).xTitle('x test').yTitle('y test').title('test title');
 
         // Function to make charts (doing a data-join to make charts)
         var draw = function() {

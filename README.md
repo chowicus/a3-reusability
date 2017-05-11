@@ -21,3 +21,16 @@ chartWrapper.datum([newDataSet]).call(myChart);
 .yTitle(newString)
 
 .title(newString)
+
+## Data structure
+Example of csv file
+```
+"country_area","year","value"
+"Australia","2014","393126.946994288"
+"Australia","2013","396913.93653029"
+"Australia","2012","406462.8477036"
+"Australia","2011","403705.528313991"
+"Australia","2010","406200.993184341"
+"Australia","2009","408448.47899963"
+"Australia","2008","404237.828214077"
+```

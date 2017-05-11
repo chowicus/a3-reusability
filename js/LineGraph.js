@@ -9,7 +9,7 @@ var LineGraph = function () {
         xTitle = 'X Axis Title',
         yTitle = 'Y Axis Title',
         title = 'Chart title',
-        stroke = 'steelblue',
+        strokeColor = 'steelblue',
         margin = {
             left: 70,
             bottom: 50,
@@ -154,6 +154,12 @@ var LineGraph = function () {
         title = value;
         return chart;
     };
+
+    // chart.strokeColor = function (value) {
+    //     if (!arguments.length) return strokeColor;
+    //     strokeColor = value;
+    //     return chart;
+    // };
 
     return chart;
 };
