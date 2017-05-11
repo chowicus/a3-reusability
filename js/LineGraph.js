@@ -68,12 +68,14 @@ var LineGraph = function () {
                 .attr('class', 'title y');
 
             // Define xAxis and yAxis functions
-            var xAxis = d3.axisBottom().tickFormat(d3.format('.2s'));
+            var xAxis = d3.axisBottom().tickFormat(d3.format('d'));
             var yAxis = d3.axisLeft().tickFormat(d3.format('.2s'));
 
             // Calculate x and y scales
-            var xMax = d3.max(data, (d) => +d.x) * 1.05;
-            var xMin = d3.min(data, (d) => +d.x) * .95;
+            // var xMax = d3.max(data, (d) => +d.x) * 1.01;
+            // var xMin = d3.min(data, (d) => +d.x) * .99;
+            var xMax = d3.max(data, (d) => +d.x);
+            var xMin = d3.min(data, (d) => +d.x);
             xScale.range([0, chartWidth]).domain([xMin, xMax]);
 
             var yMin = d3.min(data, (d) => +d.y) * .95;
