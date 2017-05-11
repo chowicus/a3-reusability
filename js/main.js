@@ -1,4 +1,3 @@
-/* Create a scatter plot of 1960 life expectancy (gdp) versus 2013 life expectancy (life_expectancy).*/
 
 $(function() {
     // Variables to show
@@ -7,10 +6,10 @@ $(function() {
     var chartData,
         nestedData;
 
-    // Load data in using d3's csv function
-    d3.csv('data/un_co2_data.csv', function (error, data) {
-
-        /* ********************************** Data prep  ********************************** */
+    // Load data in using d3's csv function.
+    // d3.csv('data/prepped_data.csv', function(error, data) {
+       d3.csv('data/un_co2_data.csv', function(error, data) {
+        // Put data into generic terms
         var prepData = function() {
             chartData = data.map(function(d) {
                 return {
@@ -21,30 +20,17 @@ $(function() {
                 };
             });
 
-
-        // Nest the data by `country_area` to create an **array of objects**, one for each **country**
-        var nestedData = d3.nest()
-            .key(function (d) {
-                return d.country_area;
-            })
-            .entries(chartData);
+            // Nest data by region
+            nestedData = d3.nest()
+                .key(function(d) {
+                    return d.country_area;
+                })
+                .entries(chartData);
         };
-
-        // // Get a unique list of countries to make selector
-        // var uniqCountries = dataByCountry.map(function (d) {
-        //     return d.key
-        // });
-
-        // // function for filtering data based on selected countries
-        // function filterData() {
-        //     selectedData = dataByCountry.filter(function (d) {
-        //         return selectedCountries.indexOf(d.key) > -1
-        //     })
-        // }
 
         prepData();
         // Define function to draw ScatterPlot
-        var line = LineGraph().width(300).height(300);
+        var linegraph = LineGraph().width(1000).height(300).xTitle('x test').yTitle('y test').title('test title');
 
         // Function to make charts (doing a data-join to make charts)
         var draw = function() {
@@ -54,11 +40,12 @@ $(function() {
             // Do a data join to make small multiples
             var charts = d3.select('#vis').selectAll('.chart')
                 .data(nestedData)
+                //.data(chartData)
 
             charts.enter().append("div")
                 .attr('class', 'chart')
                 .merge(charts)
-                .call(line);
+                .call(linegraph);
 
             charts.exit().remove();
         };
