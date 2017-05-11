@@ -3,8 +3,8 @@ var LineGraph = function () {
     // Set default values
     var height = 500,
         width = 500,
-        //xScale = d3.scaleLinear(),
-        xScale = d3.scaleTime().rangeRound([0, width]);
+        xScale = d3.scaleLinear(),
+        // xScale = d3.scaleTime().rangeRound([0, width]);
         yScale = d3.scaleLinear(),
         xTitle = 'X Axis Title',
         yTitle = 'Y Axis Title',
@@ -91,8 +91,8 @@ var LineGraph = function () {
             ele.select('.title.y').text(yTitle)
 
             var line = d3.line()
-                .x(function (d) { console.log(d.xVar); return xScale(d.xVar); })
-                .y(function (d) { return yScale(d.yVar); });
+                .x(function (d) { console.log(d); return xScale(d.x); })
+                .y(function (d) { return yScale(d.y); });
 
             // xScale.domain(d3.extent(data, function (d) { return d.xVar; }));
             // yScale.domain(d3.extent(data, function (d) { return d.yVar; }));
@@ -115,6 +115,7 @@ var LineGraph = function () {
                 // .attr("d", line);
                 //.attr('d',data, function (d) {console.log(d.value); return line(d.value) });
                 // .attr('d', line);
+                .attr('fill', 'none')
                 .attr('d', line(data));
 
             // Use the .exit() and .remove() methods to remove elements that are no longer in the data

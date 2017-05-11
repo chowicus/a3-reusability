@@ -15,10 +15,8 @@ $(function() {
                 return {
                     x: d[xVar],
                     y: d[yVar],
-                    // x: d.xVar,
-                    // y: d.yVar,
                     id: d.country_area,
-                    //region: d.region
+
                 };
             });
 
