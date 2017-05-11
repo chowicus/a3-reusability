@@ -4,6 +4,8 @@ Building a Line Graph
 
 This is exercise to make a reusable line graph.
 
+main.js has completed code, emptymain.js is where to recreate main.js
+
 ## Initiation of chart
 var chartWrapper = d3.select('#mydiv').datum([dataSet]).call(myChart); 
 
