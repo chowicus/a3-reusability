@@ -15,6 +15,8 @@ $(function() {
                 return {
                     x: d[xVar],
                     y: d[yVar],
+                    // x: d.xVar,
+                    // y: d.yVar,
                     id: d.country_area,
                     //region: d.region
                 };
@@ -23,13 +25,14 @@ $(function() {
             // Nest data by region
             nestedData = d3.nest()
                 .key(function(d) {
-                    return d.country_area;
+                    return d.id;
                 })
                 .entries(chartData);
         };
 
         prepData();
-        // Define function to draw ScatterPlot
+
+        // Define function to draw a LineGraph
         var linegraph = LineGraph().width(1000).height(300).xTitle('x test').yTitle('y test').title('test title');
 
         // Function to make charts (doing a data-join to make charts)
@@ -52,12 +55,6 @@ $(function() {
 
         // Call draw function
         draw();
-
-        // Set change event to the select menu
-        $('select').on('change', function(d) {
-            xVar = $(this).val();
-            draw();
-        });
 
         // Initialize materialize style
         $('select').material_select()

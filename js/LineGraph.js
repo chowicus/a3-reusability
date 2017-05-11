@@ -3,7 +3,8 @@ var LineGraph = function () {
     // Set default values
     var height = 500,
         width = 500,
-        xScale = d3.scaleLinear(),
+        //xScale = d3.scaleLinear(),
+        xScale = d3.scaleTime().rangeRound([0, width]);
         yScale = d3.scaleLinear(),
         xTitle = 'X Axis Title',
         yTitle = 'Y Axis Title',
@@ -89,28 +90,8 @@ var LineGraph = function () {
             ele.select('.title.x').text(xTitle)
             ele.select('.title.y').text(yTitle)
 
-            // // Draw markers
-            // var lines = ele.select('.chartG').selectAll('circle').data(data, (d) => d.id);
-
-            // // Use the .enter() method to get entering elements, and assign initial position
-            // lines.enter().append('circle')
-            //     .attr('fill', fill)
-            //     .attr('cy', chartHeight)
-            //     .style('opacity', .3)
-            //     .attr('cx', (d) => xScale(d.x))
-            //     // Transition properties of the + update selections
-            //     .merge(lines)
-            //     .attr('r', radius)
-            //     .transition()
-            //     .duration(1500)
-            //     .delay((d) => xScale(d.x) * 5)
-            //     .attr('cx', (d) => xScale(d.x))
-            //     .attr('cy', (d) => yScale(d.y))
-
-            // // Use the .exit() and .remove() methods to remove elements that are no longer in the data
-            // lines.exit().remove();
             var line = d3.line()
-                .x(function (d) {console.log(d.xVar); return xScale(d.xVar); })
+                .x(function (d) { console.log(d.xVar); return xScale(d.xVar); })
                 .y(function (d) { return yScale(d.yVar); });
 
             // xScale.domain(d3.extent(data, function (d) { return d.xVar; }));
@@ -124,45 +105,17 @@ var LineGraph = function () {
                     return d.key
                 });
 
-            // Use the .enter() method to get entering elements, and assign initial position
+            // Use the .enter() method to get entering elements
             lines.enter().append('path')
-                //.datum(selection)
                 .attr('class', 'line')
-                // //.attr('d', function (d) { console.log(d.year); return line(d.year) })
-
-                // .attr('fill', 'none')
-                // .attr('stroke-width', 1.5)
-                // //.attr('stroke', function (d) { return colorScale(d.key) })
-                // .attr("stroke-dasharray", function (d) {
-                //     var totalLength = d3.select(this).node().getTotalLength();
-                //     // return d3.select(this).node().getTotalLength() + " " + d3.select(this).node().getTotalLength() })
-                //     return (totalLength + ' ' + totalLength);
-                // })
-                // .attr("stroke-dashoffset", function (d) { return -d3.select(this).node().getTotalLength(); }) //animation
-                // .transition()
-                // .duration(2000)
-                // .attr("stroke-dashoffset", function (d) { return 0; })
-                // .attr('d', line);
-                //.datum(data)
-                //.attr("fill", "none")
                 .attr("stroke", "steelblue")
                 .attr("stroke-linejoin", "round")
                 .attr("stroke-linecap", "round")
                 .attr("stroke-width", 1.5)
                 // .attr("d", line);
                 //.attr('d',data, function (d) {console.log(d.value); return line(d.value) });
+                // .attr('d', line);
                 .attr('d', line(data));
-            // .attr('cy', chartHeight)
-            // .style('opacity', .3)
-            // .attr('cx', (d) => xScale(d.x))
-            // // Transition properties of the + update selections
-            // //.merge(lines)
-            // //.attr('r', radius)
-            // .transition()
-            // .duration(1500)
-            // .delay((d) => xScale(d.x) * 5)
-            // .attr('cx', (d) => xScale(d.x))
-            // .attr('cy', (d) => yScale(d.y))
 
             // Use the .exit() and .remove() methods to remove elements that are no longer in the data
             lines.exit().remove();
