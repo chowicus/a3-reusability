@@ -36,3 +36,6 @@ Example of csv file
 "Australia","2009","408448.47899963"
 "Australia","2008","404237.828214077"
 ```
+
+## Graph example
+![Alt text](images/linegraph.png)
